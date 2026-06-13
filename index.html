@@ -7,7 +7,8 @@
   <meta property="og:url" content="https://rumahdigitalproject.github.io/Arifa-Maulana/" />
 
   <meta charset="UTF-8" />
-  <meta name="theme-color" content="#000" />
+  <meta name="theme-color" content="#580b0b" />
+  <!-- Penambahan viewport fit=cover agar aman dari notch/poni HP -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <title>The Wedding of Billy & Sinta</title>
@@ -15,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
+  <!-- Ditambahkan font Playfair Display khusus untuk halaman pembuka (cover) -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Scheherazade+New&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=OCR+F&display=swap" rel="stylesheet">
   
@@ -27,12 +29,11 @@
     html, body { 
       font-family: 'Poppins', sans-serif; 
       scroll-behavior: smooth; 
-      background: #fff7f7; 
+      background: #4a0915; /* Base Burgundy */
       overflow-x: hidden; 
-      -webkit-font-smoothing: antialiased; /* Optimasi render font */
+      -webkit-font-smoothing: antialiased; 
     }
     
-    /* MENGUNCI SCROLL SAAT COVER AKTIF */
     body.lock-scroll { overflow: hidden !important; height: 100vh; }
 
     /* =========================================
@@ -43,21 +44,22 @@
       z-index: 9999;
       top: 0; left: 0;
       width: 100%; height: 100vh;
-      background: url('galeri8.webp') center/cover no-repeat;
+      background: url('galeri8.webp') center/cover no-repeat; 
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
       transition: opacity 0.8s ease; 
-      will-change: opacity; /* Optimasi Animasi CSS GPU */
+      will-change: opacity; 
     }
 
     #cover::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.6) 100%);
+      /* Gradasi Burgundy Gelap di Cover */
+      background: linear-gradient(to bottom, rgba(88, 11, 11, 0.4) 0%, rgba(40, 5, 5, 0.2) 50%, rgba(88, 11, 11, 0.8) 100%);
       z-index: 1;
     }
 
@@ -87,6 +89,7 @@
       margin: 5px 0 0 0;
       text-align: center;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      color: #f3a302; /* Emas */
     }
 
     .bottom-area {
@@ -131,10 +134,10 @@
     .btn-open {
       padding: 10px 22px;
       font-size: 1em;
-      border: 1.5px solid #ffffff;
+      border: 1px solid #f3a302;
       border-radius: 6px;
       cursor: pointer;
-      background: rgba(35, 59, 83, 0.85); 
+      background: rgba(88, 11, 11, 0.85); /* Burgundy Transparan */
       color: #ffffff;
       display: inline-flex;
       align-items: center;
@@ -148,76 +151,24 @@
     }
 
     .btn-open:hover { 
-      background: rgba(35, 59, 83, 1); 
+      background: rgba(88, 11, 11, 1); 
       transform: scale(1.05); 
     }
 
-    .btn-open i {
-      color: #ffffff; 
-      font-size: 1.1em; 
-    }
+    .btn-open i { color: #ffffff; font-size: 1.1em; }
 
     /* =========================================
-       SISTEM ANIMASI PINTU GERBANG (WOW EFFECT)
+       SLIDESHOW (SEKARANG MENGGUNAKAN VIDEO)
        ========================================= */
-    #gate-container {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100vh;
-      z-index: 9998; 
-      display: flex;
-      pointer-events: none; 
-    }
-
-    .gate-kiri, .gate-kanan {
-      width: 50%;
-      height: 100%;
-      background-color: #233b53; 
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1); 
-      will-change: transform; /* Akselerasi GPU */
-      transform: translateZ(0); /* Paksa 3D rendering untuk cegah lag */
-    }
-
-    .gate-kiri {
-      background-image: url('pintu-kiri.webp'); 
-      background-position: right center;
-      border-right: 2px solid #c2b10b; 
-    }
-
-    .gate-kanan {
-      background-image: url('pintu-kanan.webp'); 
-      background-position: left center;
-      border-left: 2px solid #c2b10b;
-    }
-
-    .gate-open .gate-kiri { transform: translateX(-100%) translateZ(0); }
-    .gate-open .gate-kanan { transform: translateX(100%) translateZ(0); }
-
-    .reveal-zoom {
-      animation: zoomOutReveal 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    }
-    @keyframes zoomOutReveal {
-      from { transform: scale(1.3) translateZ(0); filter: blur(5px); opacity: 0.8; }
-      to { transform: scale(1) translateZ(0); filter: blur(0px); opacity: 1; }
-    }
-
-    /* HALAMAN ISI */
-    #invitation { 
-      display: none;
-      animation: fadeIn 1.5s ease forwards;
-      will-change: transform, opacity;
-    }
-
     .slideshow {
       position: relative;
       height: 100vh;
       width: 100%;
-      overflow: visible;
-      background-color: #000; 
+      overflow: hidden;
+      background-color: #3a0606; 
     }
 
-    .background-image {
+    .background-video {
       position: absolute;
       top: 0;
       left: 0;
@@ -226,7 +177,49 @@
       object-fit: cover;
       object-position: center;
       z-index: 0;
-      will-change: transform, filter;
+    }
+
+    /* KOTAK OVERLAY MUNCUL DI DETIK KE-7 */
+    #video-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0; /* Sengaja disembunyikan di awal */
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .video-frame {
+      border: 2px solid #f3a302;
+      border-radius: 150px 150px 20px 20px; /* Bentuk Setengah Lingkaran dan Lonjong (Arch/Pill) */
+      padding: 50px 30px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+      width: 80%;
+      max-width: 320px;
+    }
+
+    .vf-top {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .vf-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: #f3a302;
+      margin: 0;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     }
 
     .scroll-arrow {
@@ -235,11 +228,8 @@
       font-size: 32px;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 125px;
-      opacity: 0;
+      bottom: 40px;
       animation: bounce 1s infinite alternate;
-      pointer-events: none;
-      z-index: 5;
     }
 
     @keyframes bounce {
@@ -247,11 +237,13 @@
       to   { transform: translateX(-50%) translateY(15px); }
     }
     
+    /* =========================================
+       SECTION MEMPELAI (BACKGROUND FOTO + BURGUNDY OVERLAY)
+       ========================================= */
     .invitation1 {
       padding: 40px 20px;
-      background: url('dasar.webp') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
+      /* Background Layered: Gradient Burgundy + Foto Galeri */
+      background: linear-gradient(rgba(88, 11, 11, 0.85), rgba(58, 6, 6, 0.95)), url('galeri1.webp') center/cover no-repeat fixed;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -259,20 +251,12 @@
       z-index: 1;
     }
 
-    .invitation1::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 0;
-    }
-
     .bismillah {
       text-align: center;
       font-size: 18px;
       font-family: 'Poppins', sans-serif;
       margin: 60px 0 30px;
-      color:  #FFFFFF;
+      color: #f3a302; /* Emas */
       padding: 0 30px;
       margin-top: 30px;
     }
@@ -286,42 +270,38 @@
       padding: 0 20px; 
     }
 
-    .arti-ayat {
-      font-style: italic;
-    }
+    .arti-ayat { font-style: italic; }
 
-    /* BINGKAI FOTO MEMPELAI BENTUK LONJONG */
+    /* FOTO MEMPELAI */
     .foto-mempelai {
       width: 170px;
       height: 250px;
       object-fit: cover;
       border-radius: 100px; 
-      border: 4px solid #f3a302; 
+      border: 3px solid #f3a302; 
       margin: 0 auto 15px auto;
       display: block;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
       background-color: rgba(255, 255, 255, 0.2);
     }
 
+    /* BOX KACA EMBUN (GLASSMORPHISM) */
     .box-putih-kecil {
-      background: rgba(255, 255, 255, 0.96);
-      background-image: url('dasar1.webp');
-      background-size: 100% auto;  
-      background-repeat: repeat-y;
-      background-position: top center;
-      border: 3px solid #f3a302;
+      background: rgba(255, 255, 255, 0.05); /* Kaca transparan */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(243, 163, 2, 0.5); /* Bingkai emas tipis */
       border-radius: 180px; 
       max-width: 320px;
       width: 100%;
       padding: 60px 10px; 
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(243, 163, 2, 0.3), 0 0 80px rgba(243, 163, 2, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       text-align: center;
-      color: #7b1f26;
+      color: #ffffff; /* Teks Putih agar nyala di background gelap */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      /* Optimasi Anti Lag untuk Backdrop di HP lama */
       -webkit-backface-visibility: hidden;
       transform: translateZ(0);
     }
@@ -331,8 +311,9 @@
       font-size: 20px;
       margin-top: 15px;
       margin-bottom: 10px;
-      color: #FFF;
+      color: #f3a302; /* Nama warna Emas */
       line-height: 1.3;
+      font-weight: 600;
     }
 
     .orang-tua {
@@ -344,7 +325,7 @@
 
     .alamat0 {
       font-size: 12px;
-      color: #FFFFFF;
+      color: #cccccc;
       margin-top: 12px;
       font-style: italic;
     }
@@ -364,7 +345,7 @@
       .and-symbol { font-size: 50px; }
       
       /* MEMATIKAN BACKGROUND FIXED DI HP AGAR TIDAK NGE-LAG */
-      .invitation1, .acara, #rsvp, .bg-static {
+      .invitation1, .acara, .galeri-section, #gift, #rsvp, .ucapan-footer-bg {
         background-attachment: scroll !important;
       }
     }
@@ -387,7 +368,7 @@
       justify-content: flex-end; 
       align-items: flex-start;   
       padding: 60px 30px 120px 30px; 
-      background: url('galeri3.webp') center center / cover no-repeat; /* SUDAH DIGANTI KE galeri3.webp */
+      background: url('galeri3.webp') center center / cover no-repeat;
       color: #ffffff;
       text-align: left;
       overflow: hidden; /* Mengunci partikel agar tidak keluar batas */
@@ -397,13 +378,14 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%);
+      /* Sesuaikan gradasi dengan tone burgundy di bawah */
+      background: linear-gradient(to top, rgba(88,11,11,0.95) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%);
       z-index: 1;
     }
 
     #countdown-section > * {
       position: relative;
-      z-index: 2; /* Tulisan tetap paling atas supaya jelas */
+      z-index: 2;
     }
 
     /* ANIMASI LINGKARAN KEMERLAP BOKEH */
@@ -417,7 +399,7 @@
     .bokeh-circle {
       position: absolute;
       bottom: -50px;
-      /* Desain Lingkaran Bercahaya (Radial Gradient membuat pinggirnya halus) */
+      /* Desain Lingkaran Bercahaya */
       background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
       border-radius: 50%;
       will-change: transform, opacity;
@@ -445,6 +427,7 @@
       font-weight: normal;
       letter-spacing: 4px;
       margin-bottom: 15px;
+      color: #f3a302;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
 
@@ -492,11 +475,13 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #31485c; 
+      background: rgba(255, 255, 255, 0.1); 
+      backdrop-filter: blur(5px);
       color: #ffffff;
       text-decoration: none;
       padding: 12px 24px;
-      border: 1px solid rgba(255,255,255,0.6);
+      border: 1px solid #f3a302;
+      border-radius: 6px;
       font-family: 'Poppins', sans-serif;
       font-size: 13px;
       letter-spacing: 3px;
@@ -504,62 +489,54 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
-    .btn-calendar i { font-size: 16px; }
+    .btn-calendar i { font-size: 16px; color: #f3a302; }
     .btn-calendar:hover {
-      background: #1c2b3a;
+      background: #f3a302;
+      color: #3a0606;
       transform: scale(1.05);
-      border-color: #ffffff;
     }
+    .btn-calendar:hover i { color: #3a0606; }
 
-    /* DATE/ACARA */
+    /* =========================================
+       SECTION ACARA (BACKGROUND FOTO + BURGUNDY)
+       ========================================= */
     .acara {
-      background: #7b1f26 url('dasar1.webp') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
+      background: linear-gradient(rgba(88, 11, 11, 0.95), rgba(58, 6, 6, 0.85)), url('galeri2.webp') center/cover no-repeat fixed;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       position: relative;
       z-index: 1;
     }
 
     .box-acara {
-      background: #7b1f26 url('dasar.webp') no-repeat center center;
-      background-size: cover;
-      border: 3px solid #f3a302; 
+      background: rgba(0, 0, 0, 0.25); /* Kaca gelap mewah */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(243, 163, 2, 0.5); 
       border-radius: 999px;
       aspect-ratio: 9 / 12;
       max-width: 380px;
       width: 100%;
       padding: 20px 24px;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.25), 0 0 28px rgba(243, 163, 2, 0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       text-align: center;
-      color: #7b1f26;
+      color: #ffffff;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      /* Optimasi Anti Lag GPU */
       -webkit-backface-visibility: hidden;
       transform: translateZ(0);
     }
 
-    .box-acara::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(255, 255, 255, 0.55);
-      z-index: 1; 
-    }
-    .box-acara > * { position: relative; z-index: 2; }
-
     .tglacara {
       font-family: 'Poppins', sans-serif;
       font-size: 18px;
-      color: #1a1f3c;
+      color: #fff;
       line-height: 1.6;
       margin-bottom: 3px;
       text-align: center;
@@ -568,8 +545,8 @@
 
     .waktuacara, .alamatacara {
       font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      color: #1a1f3c;
+      font-size: 15px;
+      color: #ddd;
       line-height: 1.5;
       text-align: center;
       font-style: italic;
@@ -581,7 +558,7 @@
       text-align: center;
       font-family: 'Poppins', sans-serif;
       font-size: 25px;
-      color: #1a1f3c;
+      color: #f3a302;
       line-height: 1.6;
       margin-bottom: 10px;
       margin-top: 10px;
@@ -589,56 +566,37 @@
 
     .judul {
       font-family: 'Great Vibes', cursive;
-      font-size: 31px;
-      color: #580b0b;
-      margin-bottom: 35px;
+      font-size: 36px;
+      color: #f3a302;
+      margin-bottom: 30px;
       margin-top: 20px;
       text-align: center;
-      font-weight: bold;
-    }
-
-    .bg-static {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url('kembang.jpg') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .bg-static::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+      font-weight: normal;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
     .tombol-maps { text-align: center; margin: 24px 0; }
     .tombol-maps a {
       display: inline-block;
-      background-color:#580b0b; 
+      background: rgba(255, 255, 255, 0.1); 
       color: white;
       text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 14px;
-      font-size: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #f3a302;
+      font-size: 13px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
     }
-    .tombol-maps a:hover { background-color: #3d0808; }
+    .tombol-maps a:hover { background-color: #f3a302; color: #3a0606; }
 
     /* =========================================
-       GALERI SECTION (MARQUEE + GRID 8 FOTO) 
+       GALERI SECTION (BACKGROUND FOTO + BURGUNDY) 
        ========================================= */
     .galeri-section {
       padding: 60px 20px;
-      background-image: url('dasar.webp');
+      background: linear-gradient(rgba(58, 6, 6, 0.85), rgba(88, 11, 11, 0.95)), url('galeri3.webp') center/cover no-repeat fixed;
       text-align: center;
-      background-repeat: repeat-y;
-      background-size: contain;
-      background-position: top center;
-      background-color: #fff;
       margin-bottom: 0px;
       min-height: 100vh;
       overflow: hidden; 
@@ -647,11 +605,11 @@
     .galeri-title {
       font-family: 'Great Vibes', cursive;
       font-size: 50px;
-      color: #fff;
+      color: #f3a302;
       margin-bottom: 30px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
 
-    /* --- FOTO BERJALAN KIRI KE KANAN (MARQUEE) --- */
     .marquee-container {
       width: 100vw;
       position: relative;
@@ -663,14 +621,13 @@
       white-space: nowrap;
       padding: 15px 0;
       margin-bottom: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+      background: rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
     }
 
     .marquee-track {
       display: inline-flex;
       gap: 15px;
-      /* Animasi Berjalan & Force GPU Rendering untuk Anti-Lag */
       animation: scrollLTR 35s linear infinite;
       width: max-content;
       will-change: transform;
@@ -688,12 +645,12 @@
       border-radius: 12px;
       object-fit: cover;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid rgba(243, 163, 2, 0.3);
       transition: transform 0.3s;
     }
-    .marquee-track img:hover { transform: scale(1.05); }
+    .marquee-track img:hover { transform: scale(1.05); border-color: #f3a302; }
 
-    /* --- GRID FOTO (VARIASI UKURAN 8 FOTO) --- */
     .galeri-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -703,10 +660,11 @@
     }
 
     .galeri-item {
-      background: white;
+      background: rgba(255,255,255,0.05);
       padding: 6px;
       border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(243, 163, 2, 0.2);
       overflow: hidden;
     }
 
@@ -745,11 +703,11 @@
       max-height: 85%;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      border: 2px solid #f3a302;
       transition: transform 0.4s ease;
     }
     .close {
-      position: absolute;
-      top: 20px; right: 30px;
+      position: absolute; top: 20px; right: 30px;
       color: white; font-size: 45px; font-weight: bold;
       cursor: pointer; z-index: 10001;
     }
@@ -759,14 +717,14 @@
       padding: 10px 15px; cursor: pointer; user-select: none;
       transform: translateY(-50%); border-radius: 50%;
       background: rgba(0,0,0,0.4); transition: background 0.3s, color 0.3s;
-      z-index: 10001;
+      z-index: 10001; border: 1px solid rgba(255,255,255,0.2);
     }
-    .prev:hover, .next:hover { background: rgba(255,204,0,0.8); color: black; }
+    .prev:hover, .next:hover { background: #f3a302; color: #3a0606; }
     .prev { left: 15px; }
     .next { right: 15px; }
 
     /* =========================================
-       GIFT SECTION (TAMPIL LANGSUNG + WA FORM)  
+       GIFT SECTION (BACKGROUND FOTO + BURGUNDY)
        ========================================= */
     #gift {
       position: relative;
@@ -774,31 +732,18 @@
       padding: 60px 20px;
       text-align: center;
       color: #fff;
-      background-image: url('dasar1.webp');
-      background-size: 220%;
-      background-position: center top;
-      background-repeat: no-repeat;
+      background: linear-gradient(rgba(88, 11, 11, 0.95), rgba(58, 6, 6, 0.85)), url('galeri4.webp') center/cover no-repeat fixed;
       min-height: auto;
       z-index: 0;
-    }
-    #gift::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url('dasar1.webp');
-      background-size: contain;
-      background-position: top center;
-      background-repeat: repeat-y;
-      opacity: 1; 
-      z-index: -1;
     }
 
     .GIFT-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      color: #FFF;
+      font-size: 42px;
+      color: #f3a302;
       margin-bottom: 20px;
       text-align: center;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
     .gift-thanks {
       font-family: 'Poppins', sans-serif;
@@ -814,9 +759,10 @@
     .atm-card {
       width: 100%; max-width: 380px; height: 220px; margin: 0 auto 30px;
       border-radius: 18px; padding: 20px; position: relative; color: #fff;
-      box-shadow: 0px 6px 25px rgba(0,0,0,0.5);
-      background: linear-gradient(135deg, #0a0a0a, #1f1f1f, #3a3a3a, #0d0d0d);
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.6);
+      background: linear-gradient(135deg, #1f0404, #3a0606, #580b0b, #1f0404);
       background-size: 300% 300%;
+      border: 1px solid rgba(243, 163, 2, 0.3);
       animation: premiumMove 6s ease infinite;
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; gap: 6px; z-index: 1;
@@ -827,42 +773,42 @@
       100% { background-position: 0% 50%; }
     }
     .bank-logo { position: absolute; top: 15px; right: 20px; z-index: 2; }
-    .bank-logo img { width: 85px; height: auto; }
+    .bank-logo img { width: 85px; height: auto; filter: brightness(0) invert(1); }
     .atm-chip {
       position: absolute; top: 20px; left: 20px; width: 48px; height: 34px;
       border-radius: 8px; overflow: hidden; z-index: 2;
-      background: linear-gradient(135deg, #f5f5f5, #cfcfcf, #e4e4e4, #bfbfbf);
-      box-shadow: 0 0 6px rgba(255,255,255,0.4), inset 0 0 6px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, #f3a302, #ffd700, #ffec8b, #b8860b);
+      box-shadow: 0 0 6px rgba(0,0,0,0.4), inset 0 0 6px rgba(255,255,255,0.4);
     }
     .atm-chip::before {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(45deg, rgba(255,255,255,0.45) 0%, transparent 60%); opacity: 0.6;
+      background: linear-gradient(45deg, rgba(255,255,255,0.3) 0%, transparent 60%); opacity: 0.6;
     }
     .atm-chip::after {
       content: ""; position: absolute; inset: 0;
-      background: repeating-linear-gradient(90deg, rgba(90,90,90,0.35) 0px, rgba(90,90,90,0.35) 2px, transparent 2px, transparent 6px); opacity: 0.4;
+      background: repeating-linear-gradient(90deg, rgba(139,69,19,0.3) 0px, rgba(139,69,19,0.3) 2px, transparent 2px, transparent 6px); opacity: 0.4;
     }
     .rek-number {
       font-family: 'OCR F', monospace; font-size: 18px; font-weight: 700;
-      letter-spacing: 2px; text-align: center; z-index: 2;
+      letter-spacing: 2px; text-align: center; z-index: 2; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
     .rek-name {
       font-family: 'OCR F', monospace; font-size: 18px; opacity: 0.9; z-index: 2;
     }
     .copy-btn {
       position: absolute; bottom: 15px; left: 15px;
-      background: #ffdd7d; color: #1c1400; border: 1px solid #ccc;
+      background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #f3a302;
       padding: 6px 13px; border-radius: 8px; cursor: pointer; font-size: 13px;
       font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
-      transition: 0.2s ease; z-index: 10; pointer-events: auto;
+      transition: 0.2s ease; z-index: 10; pointer-events: auto; backdrop-filter: blur(4px);
     }
-    .copy-btn:hover { background: #f7f7f7; transform: scale(1.03); }
+    .copy-btn:hover { background: #f3a302; color: #3a0606; transform: scale(1.03); }
 
     /* BOX FORM KONFIRMASI GIFT WA */
     .gift-confirm-box {
-      background: rgba(35, 59, 83, 0.85); 
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.4); border-radius: 120px; 
+      background: rgba(0, 0, 0, 0.3); 
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(243, 163, 2, 0.4); border-radius: 120px; 
       padding: 50px 30px; max-width: 400px; margin: 0 auto; color: white;
       text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       -webkit-backface-visibility: hidden; transform: translateZ(0);
@@ -872,7 +818,7 @@
     }
     .gift-confirm-title {
       font-family: 'Playfair Display', serif; font-size: 32px; font-weight: normal;
-      margin-bottom: 5px; letter-spacing: 1px;
+      margin-bottom: 5px; letter-spacing: 1px; color: #f3a302;
     }
     .gift-confirm-subtitle {
       font-family: 'Poppins', sans-serif; font-size: 13px; font-style: italic;
@@ -881,65 +827,73 @@
     .form-group { text-align: left; margin-bottom: 16px; }
     .form-group label {
       display: block; font-family: 'Poppins', sans-serif; font-size: 13px;
-      margin-bottom: 6px; margin-left: 5px;
+      margin-bottom: 6px; margin-left: 5px; color: #ddd;
     }
     .form-group input[type="text"], .form-group input[type="number"] {
-      width: 100%; padding: 12px 15px; border-radius: 8px; border: none;
+      width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
       font-family: 'Poppins', sans-serif; font-size: 14px;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); background: #ffffff; color: #333;
+      background: rgba(255,255,255,0.1); color: #fff;
     }
+    .form-group input::placeholder { color: #aaa; }
     .btn-konfirmasi {
-      width: 100%; padding: 14px; background: transparent; border: 1.5px solid #fff;
+      width: 100%; padding: 14px; background: #580b0b; border: 1px solid #f3a302;
       color: #fff; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 15px;
       cursor: pointer; margin-top: 15px; transition: all 0.3s ease;
       display: inline-flex; justify-content: center; align-items: center; gap: 8px;
     }
-    .btn-konfirmasi:hover { background: #fff; color: #233b53; transform: scale(1.03); }
+    .btn-konfirmasi:hover { background: #f3a302; color: #3a0606; transform: scale(1.03); }
 
-    /* RSVP & PAGINATION */
+    /* =========================================
+       RSVP SECTION (BACKGROUND FOTO + BURGUNDY)
+       ========================================= */
     #rsvp {
-      background: #7b1f26 url('dasar.webp') no-repeat center center;
-      background-size: cover; background-attachment: fixed; display: flex;
-      justify-content: center; align-items: center; padding: 40px 20px;
+      background: linear-gradient(rgba(58, 6, 6, 0.85), rgba(88, 11, 11, 0.95)), url('galeri5.webp') center/cover no-repeat fixed;
+      display: flex; justify-content: center; align-items: center; padding: 60px 20px;
       position: relative; z-index: 1;
     }
     .RSVP-title {
-      font-family: 'Great Vibes', cursive; font-size: 30px; color:  #580b0b; 
-      margin-bottom: 30px;
+      font-family: 'Great Vibes', cursive; font-size: 42px; color: #f3a302; 
+      margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
     .rsvp-container {
-      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.3); backdrop-filter: blur(12px);
       padding: 30px; border-radius: 20px; max-width: 600px; margin: 0 auto;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      -webkit-backface-visibility: hidden; transform: translateZ(0);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(243, 163, 2, 0.3);
+      -webkit-backface-visibility: hidden; transform: translateZ(0); color: white;
     }
     #rsvp input, #rsvp select, #rsvp textarea, #rsvp button {
-      width: 100%; padding: 12px; margin-top: 10px; border: none;
-      border-radius: 10px; font-size: 16px;
+      width: 100%; padding: 12px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px; font-size: 15px;
     }
-    #rsvp input, #rsvp textarea, #rsvp select { background: rgba(255,255,255,0.9); color: #333; }
+    #rsvp input, #rsvp textarea, #rsvp select { 
+      background: rgba(255,255,255,0.1); color: #fff; 
+    }
+    #rsvp input::placeholder, #rsvp textarea::placeholder { color: #aaa; }
+    #rsvp select option { background: #3a0606; color: #fff; }
     #rsvp button {
-      background: #580b0b; color: #ffffff; font-weight: 600; cursor: pointer; transition: 0.3s;
+      background: #580b0b; color: #ffffff; font-weight: 600; cursor: pointer; 
+      transition: 0.3s; border: 1px solid #f3a302; margin-top: 20px;
     }
-    #rsvp button:hover { background: #6d0e0e; transform: scale(1.03); }
+    #rsvp button:hover { background: #f3a302; color: #3a0606; transform: scale(1.03); }
+    
     .ucapan-list { margin-top: 30px; text-align: left; }
     .ucapan-item {
-      background: rgba(255,255,255,0.15); border-radius: 12px; padding: 15px;
-      margin-bottom: 10px; animation: fadeIn 0.6s ease;
+      background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px;
+      margin-bottom: 10px; animation: fadeIn 0.6s ease; border-left: 3px solid #f3a302;
     }
-    .ucapan-item small { opacity: 0.8; font-size: 13px; }
+    .ucapan-item small { opacity: 0.7; font-size: 12px; color: #ffd700; }
 
     /* CSS PAGINASI UCAPAN */
     .pagination-container {
       display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap;
     }
     .page-btn {
-      background: rgba(255, 255, 255, 0.2) !important; border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      background: rgba(255, 255, 255, 0.1) !important; border: 1px solid rgba(243, 163, 2, 0.5) !important;
       color: white !important; padding: 6px 12px !important; border-radius: 6px !important;
       cursor: pointer; font-family: 'Poppins', sans-serif !important; font-size: 14px !important;
       transition: all 0.3s ease; width: auto !important; margin-top: 0 !important;
     }
-    .page-btn.active, .page-btn:hover { background: #ffffff !important; color: #580b0b !important; font-weight: bold; }
+    .page-btn.active, .page-btn:hover { background: #f3a302 !important; color: #3a0606 !important; font-weight: bold; }
 
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(10px);}
@@ -948,68 +902,71 @@
 
     /* Notifikasi */
     #notif {
-      position: fixed; top: 20px; right: 20px; background: #f5c542; color: #3e1013;
+      position: fixed; top: 20px; right: 20px; background: #f3a302; color: #3a0606;
       padding: 15px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       opacity: 0; transform: translateY(-20px); transition: all 0.4s ease;
-      font-weight: 600; z-index: 9999;
+      font-weight: 600; z-index: 9999; border: 1px solid #fff;
     }
     #notif.show { opacity: 1; transform: translateY(0); }
 
-    /* UCAPAN FOOTER BG */
+    /* =========================================
+       UCAPAN FOOTER BG (BACKGROUND FOTO + BURGUNDY)
+       ========================================= */
     .ucapan-footer-bg {
-      background-image: url('dasar1.webp'); min-height: 100vh; background-repeat: repeat-y;
-      background-size: contain; background-position: top center;
+      background: linear-gradient(rgba(88, 11, 11, 0.95), rgba(40, 5, 5, 1)), url('galeri6.webp') center/cover no-repeat fixed;
+      min-height: 100vh;
     }
     #ucapan {
-      background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
-      padding: 80px 20px; display: flex; justify-content: center; align-items: center;
+      padding: 80px 20px 40px; display: flex; justify-content: center; align-items: center;
     }
     .ucapan-box {
-      padding: 40px 30px 80px; position: relative; border-radius: 40px 40px 80px 80px;
+      padding: 40px 30px 60px; position: relative; border-radius: 40px 40px 80px 80px;
       overflow: hidden; display: flex; justify-content: center; align-items: center;
       flex-direction: column; text-align: center;
-      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-      -webkit-backface-visibility: hidden; transform: translateZ(0); /* Anti Lag */
+      background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(243, 163, 2, 0.3);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      -webkit-backface-visibility: hidden; transform: translateZ(0); 
     }
     .ucapan-box * { position: relative; z-index: 1; }
     .ucapan-teks {
-      font-family: 'Poppins', sans-serif; font-size: 15px; color: #c2b10b;
+      font-family: 'Poppins', sans-serif; font-size: 15px; color: #f3a302;
       line-height: 1.6; margin-bottom: 28px; margin-top: 30px; text-align: center; font-style: italic;
     }
     .ucapan-nama {
       font-family: "Poppins", sans-serif; font-size: 20px; color:  #FFF;
-      text-align: center; line-height: 1.2; margin-top: 28px;
+      text-align: center; line-height: 1.4; margin-top: 28px;
     }
 
     /* FOOTER */
     .footer-wedding {
-      color: #f7e9e9; text-align: center; padding: 80px 20px 100px; font-family: "Poppins", sans-serif;
+      color: #f7e9e9; text-align: center; padding: 20px 20px 100px; font-family: "Poppins", sans-serif;
     }
     .footer-brand {
-      font-size: 20px; font-weight: 600; background: linear-gradient(90deg, #f7d4d4, #f3bcbc);
+      font-size: 20px; font-weight: 600; background: linear-gradient(90deg, #f3a302, #ffd700);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px;
     }
     .footer-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 25px; }
     .footer-icons a {
-      background-color: #f7e9e9; color: #4a1f28; font-size: 18px; width: 42px; height: 42px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      text-decoration: none; transition: all 0.3s ease;
+      background-color: rgba(255,255,255,0.1); color: #f3a302; font-size: 18px; width: 42px; height: 42px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #f3a302;
+      text-decoration: none; transition: all 0.3s ease; backdrop-filter: blur(4px);
     }
-    .footer-icons a:hover { background-color: #e6d2d2; transform: scale(1.08); }
+    .footer-icons a:hover { background-color: #f3a302; color: #3a0606; transform: scale(1.08); }
 
     /* MENU BAWAH AMAN DARI NAV BAR HP */
     .menu-bawah {
       position: fixed; bottom: max(15px, env(safe-area-inset-bottom) + 15px);
-      left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(6px); display: flex; justify-content: space-around;
+      left: 50%; transform: translateX(-50%); background: rgba(88, 11, 11, 0.85); /* Burgundy Transparan */
+      border: 1px solid rgba(243, 163, 2, 0.4);
+      backdrop-filter: blur(10px); display: flex; justify-content: space-around;
       align-items: center; width: 70%; max-width: 350px; padding: 6px 0; border-radius: 30px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); z-index: 9999; opacity: 0; pointer-events: none;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); z-index: 9999; opacity: 0; pointer-events: none;
       transition: opacity 0.6s ease;
     }
     .menu-bawah.show { opacity: 1; pointer-events: all; }
-    .menu-bawah a { color: #d49a6a; font-size: 18px; transition: 0.3s; }
-    .menu-bawah a:hover { color: #a05b37; transform: scale(1.15); }
+    .menu-bawah a { color: #f3a302; font-size: 18px; transition: 0.3s; padding: 5px 10px; }
+    .menu-bawah a:hover { color: #ffffff; transform: scale(1.15); }
 
     /* ANIMASI SCROLL OPTIMASI */
     .animasi-scroll {
@@ -1028,6 +985,9 @@
 </head>
 <body class="lock-scroll">
 
+<!-- ========================================= -->
+<!-- COVER BARU MENYESUAIKAN GAMBAR REFERENSI  -->
+<!-- ========================================= -->
 <div id="cover">
   <div id="cover-content">
     <div>
@@ -1045,18 +1005,22 @@
   </div>
 </div>
 
-<div id="gate-container">
-  <div class="gate-kiri"></div>
-  <div class="gate-kanan"></div>
-</div>
-
+<!-- CONTAINER VIDEO BACKGROUND EKSKLUSIF (TIDAK DI LOOP) -->
 <div class="slideshow" id="slideshow-section">
-  <img src="cover1.webp" class="background-image" id="revealBg" alt="background">
-  <div class="scroll-arrow" id="scrollArrow">↓</div>
+  <!-- Video ini akan otomatis pause di frame terakhir karena atribut "loop" dihapus -->
+  <video id="bgVideo" src="video.mp4" playsinline muted preload="auto" class="background-video"></video>
+  
+  <!-- KOTAK OVERLAY BINGKAI LONJONG (MUNCUL DETIK KE-7) -->
+  <div id="video-overlay">
+    <div class="video-frame">
+      <p class="vf-top">The Wedding Of</p>
+      <h2 class="vf-names">Billy & Sinta</h2>
+    </div>
+    <div class="scroll-arrow" id="scrollArrow">↓</div>
+  </div>
 </div>
 
 <section id="invitation1" class="invitation1">
-  <div class="bg-static"></div> 
   <p class="bismillah animasi-scroll" data-anim="left">ॐ</p>
   <p class="salam-undangan animasi-scroll" data-anim="right">
     Om Swastyastu,<br>
@@ -1093,6 +1057,7 @@
 </section>
 
 <section id="countdown-section" class="countdown-section">
+  <!-- ELEMEN ANIMASI KELAP-KELIP BOKEH (KUNANG-KUNANG) -->
   <div class="bokeh-container">
     <div class="bokeh-circle" style="left: 10%; width: 25px; height: 25px; --duration: 12s; --twinkle: 2s; --scale: 0.8; --opacity: 0.7; animation-delay: 0s;"></div>
     <div class="bokeh-circle" style="left: 25%; width: 40px; height: 40px; --duration: 18s; --twinkle: 3s; --scale: 1.2; --opacity: 0.5; animation-delay: 4s;"></div>
@@ -1126,8 +1091,7 @@
   </a>
 </section>
 
-<section class="acara" style="position: relative;">
-  <div class="bg-static"></div> 
+<section class="acara">
   <div class="box-acara animasi-scroll">
     <p class="judul animasi-scroll" data-anim="zoom-up">Resepsi Pernikahan</p>
     <p class="tglacara animasi-scroll" data-anim="zoom-up">Minggu, 19 Juli 2026</p>
@@ -1140,6 +1104,9 @@
   </div>
 </section>
 
+<!-- ========================================= -->
+<!-- GALERI (MARQUEE 8 FOTO + GRID 8 FOTO) -->
+<!-- ========================================= -->
 <section id="galeri-section" class="galeri-section">
   <h2 class="galeri-title animasi-scroll">Galeri</h2>
 
@@ -1199,6 +1166,9 @@
   <a class="next">❯</a>
 </div>
 
+<!-- ========================================= -->
+<!-- GIFT SECTION (TAMPIL LANGSUNG + WA FORM)  -->
+<!-- ========================================= -->
 <section id="gift" class="section">
   <div class="animasi-scroll" data-anim="up">
     <h2 class="GIFT-title">Gift Wedding</h2>
@@ -1208,6 +1178,7 @@
     </p>
   </div>
 
+  <!-- Kartu ATM SeaBank (Disembunyikan Sesuai Arahan Awal) -->
   <div class="atm-card animasi-scroll" data-anim="up" data-rek="1122 3344 5566" style="display: none !important;">
     <div class="bank-logo"><img src="bank.webp" alt="SeaBank Logo" loading="lazy" decoding="async"></div>
     <div class="atm-chip"></div>
@@ -1216,6 +1187,7 @@
     <button class="copy-btn"><i class="fa-regular fa-copy"></i> <span>Salin</span></button>
   </div>
 
+  <!-- Kartu ATM BRI -->
   <div class="atm-card animasi-scroll" data-anim="up" data-rek="000901148352509">
     <div class="bank-logo"><img src="bankbri.webp" alt="Bank Logo" loading="lazy" decoding="async"></div>
     <div class="atm-chip"></div>
@@ -1224,6 +1196,7 @@
     <button class="copy-btn"><i class="fa-regular fa-copy"></i> <span>Salin</span></button>
   </div>
 
+  <!-- BOX KONFIRMASI GIFT TERBARU MELENGKUNG -->
   <div class="gift-confirm-box animasi-scroll" data-anim="up">
     <img src="ornamen.png" alt="Ornamen" class="gift-ornament" loading="lazy" onerror="this.style.display='none'">
     
@@ -1252,9 +1225,9 @@
   </div>
 </section>
 
-<section id="rsvp" class="section" style="padding:60px 20px; text-align:center; color:#fff;">
-  <div class="rsvp-container">
-    <h2 class="RSVP-title animasi-scroll"> Rsvp & Ucapan</h2>
+<section id="rsvp" class="section">
+  <div class="rsvp-container animasi-scroll" data-anim="up">
+    <h2 class="RSVP-title"> Rsvp & Ucapan</h2>
     <form id="rsvpForm">
       <input type="text" id="nama" placeholder="Nama Anda" required>
       <textarea id="ucapan" rows="3" placeholder="Tulis ucapan Anda..." required></textarea>
@@ -1267,10 +1240,12 @@
     </form>
     
     <div class="ucapan-list" id="ucapanList">
-      <h3 style="margin-top:30px;">Ucapan & Kehadiran</h3>
+      <h3 style="margin-top:30px; font-family: 'Poppins', sans-serif; font-size:18px; color:#f3a302;">Ucapan & Kehadiran</h3>
       
+      <!-- Tempat Daftar Ucapan -->
       <div id="list"><p style="opacity:0.8; text-align:center;">Memuat ucapan... 😇</p></div>
       
+      <!-- Tempat Paginasi Tombol 1, 2, 3 -->
       <div id="pagination" class="pagination-container"></div>
       
     </div>
@@ -1285,8 +1260,8 @@
 
 <nav class="menu-bawah" id="menuNavigasi">
   <a href="#slideshow-section" title="Slideshow"><i class="fa-solid fa-house"></i></a>
-  <a href="#invitation1" title="invitation1"><i class="fa-solid fa-heart"></i></a>
-  <a href="#countdown-section" title="countdown-section"><i class="fa-solid fa-calendar-days"></i></a>
+  <a href="#invitation1" title="Mempelai"><i class="fa-solid fa-heart"></i></a>
+  <a href="#countdown-section" title="Acara"><i class="fa-solid fa-calendar-days"></i></a>
   <a href="#galeri-section" title="Galeri"><i class="fa-solid fa-image"></i></a>
   <a href="#gift" title="Gift Wedding"><i class="fa-solid fa-gift"></i></a>
   <a href="#rsvp" title="Ucapan"><i class="fa-solid fa-message"></i></a>
@@ -1295,13 +1270,13 @@
 <div class="ucapan-footer-bg">
   <section id="ucapan">
     <div class="ucapan-box animasi-scroll">
-      <div class="pengantin animasi-scroll" data-anim="zoom-up">
-        <img alt="Pengantin Perempuan" class="foto" src="foto5.webp" loading="lazy" decoding="async"/>
-        <p class="ucapan-teks animasi-scroll" data-anim="zoom-up">
+      <div class="pengantin" data-anim="zoom-up">
+        <img alt="Pengantin Perempuan" class="foto-mempelai" src="foto5.webp" loading="lazy" decoding="async" style="margin-bottom:0;"/>
+        <p class="ucapan-teks">
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
         </p>
-        <p class="ucapan-nama animasi-scroll" data-anim="zoom-up">
-          <strong>Om Santih, Santih, Santih, Om.<br><br>Hormat Kami<br>Bapak Agus Triono & Ibu Titik Setia Rokhani<br>sekeluarga</strong>
+        <p class="ucapan-nama">
+          <strong style="font-size: 16px;">Om Santih, Santih, Santih, Om.</strong><br><br>Hormat Kami<br><span style="color:#f3a302;">Bapak Agus Triono & Ibu Titik Setia Rokhani</span><br>sekeluarga
         </p>
       </div>
     </div>
@@ -1309,7 +1284,7 @@
 
   <footer class="footer-wedding">
     <p class="footer-made">Made With By</p>
-    <div class="footer-brand"><strong>Rumah Digital Project</strong></div>
+    <div class="footer-brand">Rumah Digital Project</div>
     <div class="footer-icons">
       <a href="https://wa.me/6285706889273" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       <a href="https://www.instagram.com/_firnanda?igsh=OXc2MWNodnpyNWRj" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1328,9 +1303,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.animasi-scroll').forEach(el => observer.observe(el));
-
-  const arrow = document.getElementById("scrollArrow");
-  setTimeout(() => { arrow.style.opacity = 1; }, 4000);
 
   // === TOMBOL SALIN REKENING ===
   document.addEventListener("click", function (e) {
@@ -1379,7 +1351,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(waUrl, '_blank');
       
-      // Reset form setelah mengirim
       giftConfirmForm.reset();
     });
   }
@@ -1397,7 +1368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === BUKA UNDANGAN (COVER, PINTU GERBANG, MUSIK, MENU) ===
+  // === BUKA UNDANGAN (COVER, MUSIK, MENU) DAN SENSOR VIDEO ===
   const openBtn = document.getElementById("openBtn");
   const cover = document.getElementById("cover");
   const invitation = document.getElementById("invitation1") || document.querySelector(".invitation1");
@@ -1423,21 +1394,30 @@ document.addEventListener("DOMContentLoaded", () => {
         cover.style.display = "none";
         invitation.style.display = "block";
         
-        const gate = document.getElementById("gate-container");
-        const revealBg = document.getElementById("revealBg");
-        if(gate) gate.classList.add("gate-open");
-        if(revealBg) revealBg.classList.add("reveal-zoom");
+        // Memutar video background setelah tombol diklik
+        const bgVideo = document.getElementById("bgVideo");
+        if (bgVideo) {
+          bgVideo.play();
+        }
         
         isOpened = true;
         safePlay();
         if (menu) menu.classList.add("show");
         window.scrollTo({ top: 0, behavior: "smooth" });
 
-        setTimeout(() => {
-          if (gate) gate.style.display = "none";
-        }, 1500);
+      }, 800); 
+    });
+  }
 
-      }, 600); 
+  // Sensor Waktu Video: Munculkan frame di detik ke-7
+  const bgVideo = document.getElementById("bgVideo");
+  const videoOverlay = document.getElementById("video-overlay");
+  
+  if (bgVideo && videoOverlay) {
+    bgVideo.addEventListener("timeupdate", () => {
+      if (bgVideo.currentTime >= 7) {
+        videoOverlay.style.opacity = "1";
+      }
     });
   }
 

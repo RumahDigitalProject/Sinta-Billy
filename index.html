@@ -202,7 +202,7 @@
 
     .vintage-frame-container {
       position: relative;
-      width: 90%;
+      width: 90vw; /* Gembok Mengikuti Lebar Layar */
       max-width: 340px;
       aspect-ratio: 340 / 540; 
       filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3)); 
@@ -768,22 +768,22 @@
     /* ANIMASI GARIS TEPI BURGUNDY (RINGAN & OTOMATIS MATI DILUAR VIEWPORT) */
     .galeri-item {
       background: white;
-      padding: 4px; /* Memberi ruang untuk garis lewat */
+      padding: 4px; 
       border-radius: 20px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       position: relative;
       overflow: hidden;
-      transform: translateZ(0); /* Anti lag / Hardware Acceleration */
+      transform: translateZ(0); 
     }
     .galeri-item::before {
       content: "";
       position: absolute;
       width: 200%; height: 200%;
       top: -50%; left: -50%;
-      background: conic-gradient(from 0deg, transparent 75%, #580b0b 100%); /* Cahaya Burgundy */
+      background: conic-gradient(from 0deg, transparent 75%, #580b0b 100%); 
       animation: spin-garis 3s linear infinite;
       will-change: transform;
-      display: none; /* Disembunyikan dulu sebelum masuk viewport */
+      display: none; 
       z-index: 1;
     }
     .galeri-item::after {
@@ -796,13 +796,12 @@
     }
     .galeri-item img {
       position: relative;
-      z-index: 10; /* Berada paling atas agar menutupi isi dalam */
+      z-index: 10; 
       width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
       transition: transform 0.3s ease; cursor: pointer;
     }
     .galeri-item img:hover { transform: scale(1.03); }
 
-    /* Animasi hanya jalan saat kelas is-visible ditambah Javascript (Anti-Lag) */
     .galeri-section.is-visible .galeri-item::before { display: block; }
 
     @keyframes spin-garis {
@@ -810,7 +809,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Delay bergantian untuk tiap foto */
     .galeri-item:nth-child(1)::before { animation-delay: 0s; }
     .galeri-item:nth-child(2)::before { animation-delay: -0.5s; }
     .galeri-item:nth-child(3)::before { animation-delay: -1s; }
@@ -995,7 +993,7 @@
     .btn-konfirmasi:hover { background: #fff; color: #233b53; transform: scale(1.03); }
 
     /* =========================================
-       RSVP (TEMA WARNA BIRU & KACA CERAH BLUR 5PX)
+       RSVP (KACA CERAH BLUR TIPIS & TEKS TENGAH)
        ========================================= */
     #rsvp {
       display: flex;
@@ -1005,13 +1003,13 @@
     .RSVP-title {
       font-family: 'Great Vibes', cursive; font-size: 38px; color: #354a5f; 
       margin-bottom: 30px;
-      text-align: center; /* Rata Tengah */
+      text-align: center;
       width: 100%;
       display: block;
     }
     .rsvp-container {
-      background: rgba(255, 255, 255, 0.65); /* Cerah Transparan */
-      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); /* Blur tipis 5px */
+      background: rgba(255, 255, 255, 0.65); 
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); 
       border: 1px solid rgba(255, 255, 255, 0.8);
       padding: 30px; border-radius: 20px; max-width: 600px; margin: 0 auto; width: 100%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -1110,26 +1108,38 @@
        BINGKAI PENUTUP BAWAH (ANTI-SHRINK LEGA VVIP)
        ========================================= */
     .frame-penutup {
-      margin: 0 auto;
-      pointer-events: auto;
-      flex-shrink: 0; /* Mencegah bingkai ciut paksa oleh wadah luar */
-      width: 90%;
-      max-width: 340px;
-      aspect-ratio: 340 / 540;
-      position: relative;
-      filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3));
+      margin: 0 auto !important;
+      pointer-events: auto !important;
+      width: 90vw !important; /* DIPAKSA BERPATOKAN MURNI PADA LEBAR LAYAR HP */
+      max-width: 340px !important; /* SAMA PERSIS DENGAN BINGKAI ATAS */
+      aspect-ratio: 340 / 540 !important;
+      position: relative !important;
+      filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3)) !important;
     }
+    
     .frame-penutup .vf-content {
-      /* Bantalan tebal di kanan-kiri agar teks tidak menempel garis tepi */
-      padding: 15% 12%; 
+      padding: 50px 30px !important; /* Bantalan tebal longgar di kanan-kiri teks */
+      position: absolute !important;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* RESET SEKSI UCAPAN BIAR TIDAK MENJEPIT BINGKAI */
+    #ucapan {
+      padding: 60px 0 !important; /* Cabut padding samping wadah luar */
+      width: 100vw !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
     }
   </style>
 </head>
 <body class="lock-scroll">
 
-<!-- ========================================= -->
-<!-- COVER HALAMAN PEMBUKA (SLIDE UP)          -->
-<!-- ========================================= -->
 <div id="cover">
   <div id="cover-content">
     <div>
@@ -1147,16 +1157,12 @@
   </div>
 </div>
 
-<!-- ========================================= -->
-<!-- SLIDESHOW (VIDEO BACKGROUND & ANIMASI VVIP)-->
-<!-- ========================================= -->
 <div class="slideshow" id="slideshow-section">
   <video id="bgVideo" src="video.mp4" playsinline muted preload="auto" class="background-video"></video>
   
   <div id="video-overlay">
     <div class="vintage-frame-container">
       
-      <!-- SVG Bingkai Transparan & Garis Menyambung -->
       <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path class="anim-bg" d="M 170 10 C 220 10, 250 40, 290 40 A 15 15 0 0 1 305 55 L 305 65 A 15 15 0 0 0 320 80 L 320 480 A 15 15 0 0 0 305 495 L 305 505 A 15 15 0 0 1 290 520 L 50 520 A 15 15 0 0 1 35 505 L 35 495 A 15 15 0 0 0 20 480 L 20 80 A 15 15 0 0 0 35 65 L 35 55 A 15 15 0 0 1 50 40 C 90 40, 120 10, 170 10 Z" fill="rgba(255,255,255,0.75)" stroke="#6c7f93" stroke-width="2.5"/>
         <path class="anim-line" d="M 170 22 C 215 22, 242 50, 278 50 A 12 12 0 0 1 290 62 L 290 70 A 12 12 0 0 0 302 82 L 302 478 A 12 12 0 0 0 290 490 L 290 498 A 12 12 0 0 1 278 510 L 170 510" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
@@ -1175,9 +1181,6 @@
   </div>
 </div>
 
-<!-- ========================================= -->
-<!-- SECTION MEMPELAI / NAVIGATOR LOVE (PARALLAX SEMPURNA)-->
-<!-- ========================================= -->
 <section id="invitation1" class="section-parallax">
   
   <p class="bismillah animasi-scroll" data-anim="left">ॐ</p>
@@ -1188,7 +1191,6 @@
     Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
   </p>
 
-  <!-- KOTAK DEPAN PUTIH TRANSPARAN (0.69) TANPA BLUR -->
   <div class="box-putih-kecil animasi-scroll">
     <div class="profilx">
       <div class="pengantinx animasi-scroll">
@@ -1250,10 +1252,7 @@
   </a>
 </section>
 
-<!-- ========================================= -->
-<!-- ACARA (PARALLAX SEMPURNA GALERI8)         -->
-<!-- ========================================= -->
-<section class="acara section-parallax">
+<section class="acara section-parallax" style="padding: 40px 20px;">
   <div class="box-acara animasi-scroll">
     <p class="judul animasi-scroll" data-anim="zoom-up">Resepsi Pernikahan</p>
     <p class="tglacara animasi-scroll" data-anim="zoom-up">Minggu, 19 Juli 2026</p>
@@ -1266,11 +1265,7 @@
   </div>
 </section>
 
-<!-- ========================================= -->
-<!-- GALERI (ANIMASI GARIS BURGUNDY + TEKS BURGUNDY) -->
-<!-- ========================================= -->
 <section id="galeri-section" class="galeri-section">
-  <!-- Teks Galeri Burgundy Center -->
   <h2 class="galeri-title animasi-scroll">Galeri</h2>
 
   <div class="marquee-container animasi-scroll" data-anim="zoom-up">
@@ -1382,9 +1377,6 @@
   </div>
 </section>
 
-<!-- ========================================= -->
-<!-- RSVP (PARALLAX SEMPURNA BACKGROUND GALERI8)-->
-<!-- ========================================= -->
 <section id="rsvp" class="section-parallax">
   <div class="rsvp-container">
     <h2 class="RSVP-title animasi-scroll"> Rsvp & Ucapan</h2>
@@ -1409,9 +1401,6 @@
 
 <div id="notif">🎉 Terima kasih atas ucapannya!</div>
 
-<!-- ========================================= -->
-<!-- AUDIO & MENU -->
-<!-- ========================================= -->
 <audio id="bgMusic" loop preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -1425,22 +1414,16 @@
   <a href="#rsvp" title="Ucapan"><i class="fa-solid fa-message"></i></a>
 </nav>
 
-<!-- ========================================= -->
-<!-- PENUTUP BAWAH (DESAIN BINGKAI VVIP & PARALLAX DASAR1) -->
-<!-- ========================================= -->
 <div class="ucapan-footer-bg section-parallax">
-  <section id="ucapan" style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 60px 20px;">
+  <section id="ucapan">
     
-    <!-- MENGGUNAKAN KELAS BINGKAI RAKSASA YANG PERSIS SAMA DENGAN VIDEO ANIMASI DETIK 4 -->
     <div class="vintage-frame-container frame-penutup animasi-scroll" data-anim="zoom-up">
       
-      <!-- SVG Bingkai Kembar 1000% dengan Ogee Arch Atas & Bawah -->
       <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M 170 10 C 220 10, 250 40, 290 40 A 15 15 0 0 1 305 55 L 305 65 A 15 15 0 0 0 320 80 L 320 460 A 15 15 0 0 0 305 475 L 305 485 A 15 15 0 0 1 290 500 C 250 500, 220 530, 170 530 C 120 530, 90 500, 50 500 A 15 15 0 0 1 35 485 L 35 475 A 15 15 0 0 0 20 460 L 20 80 A 15 15 0 0 0 35 65 L 35 55 A 15 15 0 0 1 50 40 C 90 40, 120 10, 170 10 Z" fill="rgba(255,255,255,0.75)" stroke="#6c7f93" stroke-width="2.5"/>
         <path d="M 170 22 C 215 22, 242 50, 278 50 A 12 12 0 0 1 290 62 L 290 70 A 12 12 0 0 0 302 82 L 302 458 A 12 12 0 0 0 290 470 L 290 478 A 12 12 0 0 1 278 490 C 242 490, 215 518, 170 518 C 125 518, 98 490, 62 490 A 12 12 0 0 1 50 478 L 50 470 A 12 12 0 0 0 38 458 L 38 82 A 12 12 0 0 0 50 70 L 50 62 A 12 12 0 0 1 62 50 C 98 50, 125 22, 170 22 Z" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
       </svg>
       
-      <!-- Isi Konten Pas Tengah dengan Ruang Bernapas (Padding) Yang Lega -->
       <div class="vf-content">
         <img src="galeri1.webp" class="vf-photo" alt="Foto Couple" style="width: 58%; aspect-ratio: 3/4; object-fit: cover; border-radius: 1000px 1000px 0 0; border: 1.5px solid #5a6e82; margin-bottom: 25px; margin-top: 15px;">
         <p class="ucapan-teks" style="font-family: 'Poppins', sans-serif; font-size: 13px; color: #354a5f; margin: 0; line-height: 1.8; text-align: center; text-shadow: none; font-weight: 500;">
@@ -1472,7 +1455,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.15 });
   document.querySelectorAll('.animasi-scroll').forEach(el => observer.observe(el));
 
-  // === OBSERVER KHUSUS GALERI (ANTI LAG) ===
+  // === OBSERVER KHUSUS GALERI (ANTI LAG & AUTO PAUSE) ===
   const galeriSection = document.getElementById('galeri-section');
   const galeriObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1584,7 +1567,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       isOpened = true;
-      safePlay(); // Musik music.mp3 langsung menyala bersamaan dengan video
+      safePlay(); 
       
       // Setelah animasi cover 1.2 detik selesai, hilangkan elemennya sepenuhnya
       setTimeout(() => {
@@ -1598,7 +1581,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bgVideo.addEventListener("timeupdate", () => {
       // 1. Detik 4: Memicu Seluruh Rantai Animasi Bingkai VVIP
       if (bgVideo.currentTime >= 4 && videoOverlay) {
-        // Class ini akan menjalankan urutan di CSS: Kaca -> Garis Menyambung -> Foto -> Teks
         videoOverlay.classList.add("show-frame");
       }
       
@@ -1787,7 +1769,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderUcapan();
         renderPagination();
         
-        // AUTO SCROLL KE JUDUL KETIKA KLIK HALAMAN 2,3, dst (ANTI ANJLOK KE BAWAH)
+        // AUTO SCROLL FIX MUTLAK
         document.getElementById("ucapanList").scrollIntoView({ behavior: "smooth", block: "start" });
       };
       

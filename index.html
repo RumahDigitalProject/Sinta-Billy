@@ -357,12 +357,11 @@
       width: 100%;
     }
 
-    /* MAPPING GAMBAR PARALLAX SESUAI INSTRUKSI BARU */
+    /* MAPPING GAMBAR PARALLAX KOREKSI BARU */
     #invitation1.section-parallax::before { background-image: url('galeri8.webp'); }
-    #rsvp.section-parallax::before { background-image: url('galeri8.webp'); }
-    /* Penutup dikembalikan menggunakan dasar1.webp */
-    .ucapan-footer-bg.section-parallax::before { background-image: url('dasar1.webp'); }
-
+    .acara.section-parallax::before { background-image: url('galeri8.webp'); } /* Acara menggunakan galeri8 */
+    #rsvp.section-parallax::before { background-image: url('galeri8.webp'); } /* RSVP menggunakan galeri8 */
+    .ucapan-footer-bg.section-parallax::before { background-image: url('galeri8.webp'); } /* Penutup juga galeri8.webp agar serasi & menyambung dengan RSVP */
 
     /* =========================================
        SECTION MEMPELAI / NAVIGATOR LOVE 
@@ -390,17 +389,18 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
-    /* KOTAK DEPAN PUTIH TRANSPARAN (0.69) DENGAN BLUR DIHILANGKAN */
+    /* KOTAK KACA TRANSPARAN (BLUR EFEK KACA) */
     .box-putih-kecil {
-      background: rgba(255, 255, 255, 0.69); 
-      border: 3px solid #354a5f; 
+      background: rgba(255, 255, 255, 0.15); /* Transparan */
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); /* Efek Kaca Blur */
+      border: 1px solid rgba(255, 255, 255, 0.4); /* Refleksi pinggir kaca */
       border-radius: 180px; 
       max-width: 320px;
       width: 100%;
       padding: 50px 15px; 
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
       text-align: center;
-      color: #7b1f26; 
+      color: #ffffff; /* Ubah teks jadi putih agar nyala di kaca transparan */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -425,14 +425,14 @@
       font-size: 20px;
       margin-top: 15px;
       margin-bottom: 5px;
-      color: #7b1f26;
+      color: #f3a302; /* Teks nama jadi emas karena background gelap/kaca */
       line-height: 1.3;
       font-weight: 700;
     }
 
     .orang-tua {
       font-size: 14px;
-      color: #7b1f26;
+      color: #ffffff;
       margin-top: 4px;
       margin-bottom: 10px;
       line-height: 1.5;
@@ -440,7 +440,7 @@
 
     .alamat0 {
       font-size: 12px;
-      color: #7b1f26;
+      color: #dddddd;
       margin-top: 12px;
       font-style: italic;
       line-height: 1.5;
@@ -449,9 +449,10 @@
     .and-symbol {
       font-size: 58px;
       font-family: 'Great Vibes', cursive;
-      color: #354a5f; 
+      color: #f3a302; 
       align-self: center;
       margin: 20px 10px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
     .teks-bawah {
@@ -481,9 +482,6 @@
     @media (max-width: 768px) {
       #cover-content .names { font-size: 2.2em; }
       .and-symbol { font-size: 50px; }
-      .acara, #rsvp, .bg-static {
-        background-attachment: scroll !important;
-      }
     }
 
     @media (max-width: 480px) {
@@ -620,31 +618,21 @@
       border-color: #ffffff;
     }
 
-    /* DATE/ACARA */
-    .acara {
-      background: #7b1f26 url('dasar1.webp') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
-    }
-
+    /* =========================================
+       ACARA / RESEPSI
+       ========================================= */
     .box-acara {
-      background: #7b1f26 url('dasar.webp') no-repeat center center;
-      background-size: cover;
-      border: 3px solid #f3a302; 
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(243, 163, 2, 0.5); 
       border-radius: 999px;
       aspect-ratio: 9 / 12;
       max-width: 380px;
       width: 100%;
       padding: 20px 24px;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.25), 0 0 28px rgba(243, 163, 2, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       text-align: center;
-      color: #7b1f26;
+      color: #ffffff;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -655,19 +643,10 @@
       transform: translateZ(0);
     }
 
-    .box-acara::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(255, 255, 255, 0.55);
-      z-index: 1; 
-    }
-    .box-acara > * { position: relative; z-index: 2; }
-
     .tglacara {
       font-family: 'Poppins', sans-serif;
       font-size: 18px;
-      color: #1a1f3c;
+      color: #fff;
       line-height: 1.6;
       margin-bottom: 3px;
       text-align: center;
@@ -677,7 +656,7 @@
     .waktuacara, .alamatacara {
       font-family: 'Poppins', sans-serif;
       font-size: 16px;
-      color: #1a1f3c;
+      color: #dddddd;
       line-height: 1.5;
       text-align: center;
       font-style: italic;
@@ -689,7 +668,7 @@
       text-align: center;
       font-family: 'Poppins', sans-serif;
       font-size: 25px;
-      color: #1a1f3c;
+      color: #f3a302;
       line-height: 1.6;
       margin-bottom: 10px;
       margin-top: 10px;
@@ -697,44 +676,29 @@
 
     .judul {
       font-family: 'Great Vibes', cursive;
-      font-size: 31px;
-      color: #580b0b;
-      margin-bottom: 35px;
+      font-size: 36px;
+      color: #f3a302;
+      margin-bottom: 30px;
       margin-top: 20px;
       text-align: center;
-      font-weight: bold;
-    }
-
-    .bg-static {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url('kembang.jpg') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .bg-static::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+      font-weight: normal;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
     .tombol-maps { text-align: center; margin: 24px 0; }
     .tombol-maps a {
       display: inline-block;
-      background-color:#580b0b; 
+      background: rgba(255, 255, 255, 0.1); 
       color: white;
       text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 14px;
-      font-size: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #f3a302;
+      font-size: 13px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
     }
-    .tombol-maps a:hover { background-color: #3d0808; }
+    .tombol-maps a:hover { background-color: #f3a302; color: #3a0606; }
 
     /* =========================================
        GALERI SECTION (MARQUEE + GRID 8 FOTO) 
@@ -1004,32 +968,43 @@
        RSVP (TEMA WARNA BIRU SESUAI REQUEST)
        ========================================= */
     .RSVP-title {
-      font-family: 'Great Vibes', cursive; font-size: 38px; color: #354a5f; 
+      font-family: 'Great Vibes', cursive; 
+      font-size: 38px; 
+      color: #354a5f; 
       margin-bottom: 30px;
+      text-align: center; /* DIJAMIN RATA TENGAH SEMPURNA */
+      width: 100%;
+      display: block;
     }
+    
+    /* KOTAK KACA TRANSPARAN (BLUR EFEK KACA) UNTUK RSVP */
     .rsvp-container {
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15); /* Kaca Transparan */
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); /* Efek blur pekat */
+      border: 1px solid rgba(255, 255, 255, 0.4); /* Refleksi pinggiran */
       padding: 30px; border-radius: 20px; max-width: 600px; margin: 0 auto;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       -webkit-backface-visibility: hidden; transform: translateZ(0);
     }
+    
     #rsvp input, #rsvp select, #rsvp textarea, #rsvp button {
-      width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc;
+      width: 100%; padding: 12px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.5);
       border-radius: 10px; font-size: 16px;
     }
-    #rsvp input, #rsvp textarea, #rsvp select { background: #fff; color: #333; }
+    #rsvp input, #rsvp textarea, #rsvp select { background: rgba(255,255,255,0.8); color: #333; }
     
     /* Tombol warna biru (#354a5f) */
     #rsvp button {
       background: #354a5f; color: #ffffff; font-weight: 600; cursor: pointer; transition: 0.3s;
+      border: none;
     }
     #rsvp button:hover { background: #233b53; transform: scale(1.03); }
     
     .ucapan-list { margin-top: 30px; text-align: left; }
     .ucapan-item {
-      background: rgba(53, 74, 95, 0.1); border-radius: 12px; padding: 15px;
+      background: rgba(255, 255, 255, 0.8); border-radius: 12px; padding: 15px;
       margin-bottom: 10px; animation: fadeIn 0.6s ease;
-      color: #333;
+      color: #333; border-left: 4px solid #354a5f;
     }
     .ucapan-item small { opacity: 0.8; font-size: 13px; color: #5a6e82; }
 
@@ -1038,7 +1013,7 @@
       display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap;
     }
     .page-btn {
-      background: rgba(53, 74, 95, 0.1) !important; border: 1px solid rgba(53, 74, 95, 0.3) !important;
+      background: rgba(255, 255, 255, 0.8) !important; border: 1px solid #354a5f !important;
       color: #354a5f !important; padding: 6px 12px !important; border-radius: 6px !important;
       cursor: pointer; font-family: 'Poppins', sans-serif !important; font-size: 14px !important;
       transition: all 0.3s ease; width: auto !important; margin-top: 0 !important;
@@ -1052,7 +1027,7 @@
 
     /* Notifikasi */
     #notif {
-      position: fixed; top: 20px; right: 20px; background: #f5c542; color: #3e1013;
+      position: fixed; top: 20px; right: 20px; background: #354a5f; color: #ffffff;
       padding: 15px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       opacity: 0; transform: translateY(-20px); transition: all 0.4s ease;
       font-weight: 600; z-index: 9999;
@@ -1075,7 +1050,7 @@
     }
     .footer-icons a:hover { background-color: #e6d2d2; transform: scale(1.08); }
 
-    /* MENU NAVIGATOR BAWAH (MUNCUL DETIK KE-11) & WARNA BURGUNDY */
+    /* MENU NAVIGATOR BAWAH (WARNA BURGUNDY) */
     .menu-bawah {
       position: fixed; bottom: max(15px, env(safe-area-inset-bottom) + 15px);
       left: 50%; transform: translateX(-50%); 
@@ -1136,8 +1111,7 @@
   
   <div id="video-overlay">
     <div class="vintage-frame-container">
-      
-      <!-- SVG Bingkai Transparan & Garis Menyambung -->
+      <!-- SVG Bingkai Transparan & Garis Menyambung (Animasi VVIP Detik Ke-4) -->
       <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path class="anim-bg" d="M 170 10 C 220 10, 250 40, 290 40 A 15 15 0 0 1 305 55 L 305 65 A 15 15 0 0 0 320 80 L 320 480 A 15 15 0 0 0 305 495 L 305 505 A 15 15 0 0 1 290 520 L 50 520 A 15 15 0 0 1 35 505 L 35 495 A 15 15 0 0 0 20 480 L 20 80 A 15 15 0 0 0 35 65 L 35 55 A 15 15 0 0 1 50 40 C 90 40, 120 10, 170 10 Z" fill="rgba(255,255,255,0.75)" stroke="#6c7f93" stroke-width="2.5"/>
         <path class="anim-line" d="M 170 22 C 215 22, 242 50, 278 50 A 12 12 0 0 1 290 62 L 290 70 A 12 12 0 0 0 302 82 L 302 478 A 12 12 0 0 0 290 490 L 290 498 A 12 12 0 0 1 278 510 L 170 510" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
@@ -1169,6 +1143,7 @@
     Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
   </p>
 
+  <!-- KOTAK DEPAN PUTIH TRANSPARAN (0.69) TANPA BLUR -->
   <div class="box-putih-kecil animasi-scroll">
     <div class="profilx">
       <div class="pengantinx animasi-scroll">
@@ -1231,7 +1206,7 @@
 </section>
 
 <!-- ========================================= -->
-<!-- ACARA (PARALLAX SEMPURNA)                 -->
+<!-- ACARA (PARALLAX SEMPURNA GALERI8)         -->
 <!-- ========================================= -->
 <section class="acara section-parallax" style="padding: 40px 20px;">
   <div class="box-acara animasi-scroll">
@@ -1362,8 +1337,9 @@
 <!-- RSVP (PARALLAX SEMPURNA BACKGROUND GALERI8)-->
 <!-- ========================================= -->
 <section id="rsvp" class="section-parallax">
+  <!-- KOTAK DEPAN KACA BLUR 15PX PEKAT -->
   <div class="rsvp-container">
-    <h2 class="RSVP-title animasi-scroll" style="color: #354a5f;"> Rsvp & Ucapan</h2>
+    <h2 class="RSVP-title animasi-scroll"> Rsvp & Ucapan</h2>
     <form id="rsvpForm">
       <input type="text" id="nama" placeholder="Nama Anda" required>
       <textarea id="ucapan" rows="3" placeholder="Tulis ucapan Anda..." required></textarea>
@@ -1376,8 +1352,8 @@
     </form>
     
     <div class="ucapan-list" id="ucapanList">
-      <h3 style="margin-top:30px; color: #354a5f;">Ucapan & Kehadiran</h3>
-      <div id="list"><p style="opacity:0.8; text-align:center;">Memuat ucapan... 😇</p></div>
+      <h3 style="margin-top:30px; color: #354a5f; text-align: left;">Ucapan & Kehadiran</h3>
+      <div id="list"><p style="opacity:0.8; text-align:center; color: #333;">Memuat ucapan... 😇</p></div>
       <div id="pagination" class="pagination-container"></div>
     </div>
   </div>
@@ -1406,18 +1382,21 @@
 <!-- ========================================= -->
 <div class="ucapan-footer-bg section-parallax">
   <section id="ucapan" style="width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px 20px;">
+    
+    <!-- MENGGUNAKAN KELAS BINGKAI YANG PERSIS SAMA DENGAN VIDEO -->
     <div class="vintage-frame-container animasi-scroll" data-anim="zoom-up" style="margin: 0 auto; pointer-events: auto;">
       
-      <!-- SVG Bingkai Transparan & Garis Lengkap -->
-      <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+      <!-- SVG Bingkai Kembar 1000% dengan Ogee Arch Atas & Bawah -->
+      <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Frame Kaca Putih 0.75 dgn Sudut Lancip Atas dan Bawah -->
-        <path d="M 170 10 C 215 10, 240 40, 320 40 L 320 500 C 240 500, 215 530, 170 530 C 125 530, 100 500, 20 500 L 20 40 C 100 40, 125 10, 170 10 Z" fill="rgba(255,255,255,0.75)" stroke="#6c7f93" stroke-width="2.5"/>
-        <!-- Garis Ukiran Dalam -->
-        <path d="M 170 22 C 210 22, 235 48, 308 48 L 308 492 C 235 492, 210 518, 170 518 C 130 518, 105 492, 32 492 L 32 48 C 105 48, 130 22, 170 22 Z" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
+        <path d="M 170 10 C 220 10, 250 40, 290 40 A 15 15 0 0 1 305 55 L 305 65 A 15 15 0 0 0 320 80 L 320 460 A 15 15 0 0 0 305 475 L 305 485 A 15 15 0 0 1 290 500 C 250 500, 220 530, 170 530 C 120 530, 90 500, 50 500 A 15 15 0 0 1 35 485 L 35 475 A 15 15 0 0 0 20 460 L 20 80 A 15 15 0 0 0 35 65 L 35 55 A 15 15 0 0 1 50 40 C 90 40, 120 10, 170 10 Z" fill="rgba(255,255,255,0.75)" stroke="#6c7f93" stroke-width="2.5"/>
+        <!-- Garis Ukiran Dalam Atas & Bawah -->
+        <path d="M 170 22 C 215 22, 242 50, 278 50 A 12 12 0 0 1 290 62 L 290 70 A 12 12 0 0 0 302 82 L 302 458 A 12 12 0 0 0 290 470 L 290 478 A 12 12 0 0 1 278 490 C 242 490, 215 518, 170 518 C 125 518, 98 490, 62 490 A 12 12 0 0 1 50 478 L 50 470 A 12 12 0 0 0 38 458 L 38 82 A 12 12 0 0 0 50 70 L 50 62 A 12 12 0 0 1 62 50 C 98 50, 125 22, 170 22 Z" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
       </svg>
       
-      <div class="vf-content" style="padding: 20px; justify-content: center;">
-        <img src="galeri1.webp" class="vf-photo" alt="Foto Couple" style="width: 52%; aspect-ratio: 3/4; object-fit: cover; border-radius: 1000px 1000px 0 0; border: 1.5px solid #5a6e82; margin-bottom: 25px;">
+      <!-- Isi Konten Pas Tengah Sempurna -->
+      <div class="vf-content" style="padding: 45px 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+        <img src="galeri1.webp" class="vf-photo" alt="Foto Couple" style="width: 52%; aspect-ratio: 3/4; object-fit: cover; border-radius: 1000px 1000px 0 0; border: 1.5px solid #5a6e82; margin-bottom: 20px;">
         <p class="ucapan-teks" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #354a5f; margin-bottom: 0; font-style: italic; line-height: 1.6; text-align: center;">
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
         </p>
@@ -1560,7 +1539,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bgVideo.addEventListener("timeupdate", () => {
       // 1. Detik 4: Memicu Seluruh Rantai Animasi Bingkai VVIP
       if (bgVideo.currentTime >= 4 && videoOverlay) {
-        // Class ini akan menjalankan urutan di CSS: Kaca -> Garis Menyambung -> Foto -> Teks
         videoOverlay.classList.add("show-frame");
       }
       

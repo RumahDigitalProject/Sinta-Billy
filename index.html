@@ -8,7 +8,6 @@
 
   <meta charset="UTF-8" />
   <meta name="theme-color" content="#fff7f7" />
-  <!-- Penambahan viewport fit=cover agar aman dari notch/poni HP -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <title>The Wedding of Billy & Sinta</title>
@@ -23,7 +22,7 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
   <style>
-    /* RESET & OPTIMASI UMUM (TEMA CERAH DIKEMBALIKAN) */
+    /* RESET & OPTIMASI UMUM (TEMA CERAH) */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { 
       font-family: 'Poppins', sans-serif; 
@@ -49,7 +48,6 @@
       align-items: center;
       text-align: center;
       color: white;
-      /* Animasi tirai terangkat ke atas yang sangat mulus */
       transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1); 
       will-change: transform; 
     }
@@ -188,7 +186,7 @@
     }
 
     /* =========================================
-       BINGKAI VEKTOR MELIUK (EXACT MATCH REFERENCE)
+       BINGKAI VEKTOR LANCIP MELIUK (DETIK KE-5)
        ========================================= */
     #video-overlay {
       position: absolute;
@@ -199,17 +197,27 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      opacity: 0; /* Disembunyikan di awal, muncul detik ke-7 */
+      
+      /* Animasi Mengambang Keren Awal Disembunyikan */
+      opacity: 0; 
+      transform: scale(0.85) translateY(30px);
       pointer-events: none; 
-      transition: opacity 1.5s ease-in-out;
+      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Class yang ditambah di Detik Ke-5 via JS */
+    #video-overlay.show-frame {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
     }
 
     .vintage-frame-container {
       position: relative;
       width: 90%;
       max-width: 340px;
-      aspect-ratio: 340 / 540; /* Proporsi sempurna agar sudut SVG tidak rusak/melar */
-      filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.25)); /* Shadow asli mengikuti bentuk liukan SVG */
+      aspect-ratio: 340 / 540; 
+      filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3)); 
     }
 
     .vf-svg-bg {
@@ -217,6 +225,10 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 1;
+      /* Membantu menajamkan efek blur untuk kaca */
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-radius: 20px;
     }
 
     .vf-content {
@@ -228,16 +240,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding-top: 15px; /* Penyesuaian ke tengah bingkai */
+      padding-top: 35px; /* Disesuaikan agar isi turun sedikit dari pucuk lancip */
     }
 
-    /* Foto bentuk kubah (Arch) proporsional */
     .vf-photo {
       width: 52%; 
       aspect-ratio: 3 / 4;
       object-fit: cover;
       border-radius: 1000px 1000px 0 0; 
-      border: 1.5px solid #5a6e82; /* Warna biru-abu persis referensi */
+      border: 1.5px solid #5a6e82; 
       margin-bottom: 25px;
     }
 
@@ -252,7 +263,7 @@
     }
 
     .vf-names {
-      font-family: 'Playfair Display', serif; /* Memakai serif tegas persis referensi */
+      font-family: 'Playfair Display', serif; 
       font-size: 26px;
       color: #354a5f;
       margin: 0 0 15px 0;
@@ -286,7 +297,7 @@
     }
     
     /* =========================================
-       SECTION MEMPELAI & ISI (TEMA CERAH KEMBALI)
+       SECTION MEMPELAI & ISI (TEMA CERAH ASLI)
        ========================================= */
     .invitation1 {
       padding: 40px 20px;
@@ -793,7 +804,7 @@
     .next { right: 15px; }
 
     /* =========================================
-       GIFT SECTION (TAMPIL LANGSUNG + WA FORM)  
+       GIFT SECTION 
        ========================================= */
     #gift {
       position: relative;
@@ -1025,18 +1036,21 @@
     }
     .footer-icons a:hover { background-color: #e6d2d2; transform: scale(1.08); }
 
-    /* MENU BAWAH AMAN DARI NAV BAR HP */
+    /* MENU NAVIGATOR BAWAH (MUNCUL DETIK KE-11) & WARNA BURGUNDY */
     .menu-bawah {
       position: fixed; bottom: max(15px, env(safe-area-inset-bottom) + 15px);
-      left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(6px); display: flex; justify-content: space-around;
+      left: 50%; transform: translateX(-50%); 
+      background: rgba(88, 11, 11, 0.85); /* Warna Burgundy Transparan */
+      border: 1px solid rgba(243, 163, 2, 0.5); /* Garis emas */
+      backdrop-filter: blur(8px); display: flex; justify-content: space-around;
       align-items: center; width: 70%; max-width: 350px; padding: 6px 0; border-radius: 30px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); z-index: 9999; opacity: 0; pointer-events: none;
-      transition: opacity 0.6s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); z-index: 9999; 
+      opacity: 0; pointer-events: none; /* Disembunyikan di awal */
+      transition: opacity 0.8s ease;
     }
     .menu-bawah.show { opacity: 1; pointer-events: all; }
-    .menu-bawah a { color: #d49a6a; font-size: 18px; transition: 0.3s; }
-    .menu-bawah a:hover { color: #a05b37; transform: scale(1.15); }
+    .menu-bawah a { color: #f3a302; font-size: 18px; transition: 0.3s; padding: 5px 10px; }
+    .menu-bawah a:hover { color: #ffffff; transform: scale(1.15); }
 
     /* ANIMASI SCROLL OPTIMASI */
     .animasi-scroll {
@@ -1076,21 +1090,21 @@
 </div>
 
 <!-- ========================================= -->
-<!-- SLIDESHOW (VIDEO BACKGROUND & BINGKAI KLASIK)-->
+<!-- SLIDESHOW (VIDEO BACKGROUND & BINGKAI OGEE ARCH)-->
 <!-- ========================================= -->
 <div class="slideshow" id="slideshow-section">
   <!-- Video background memutar 1 kali dan berhenti (tanpa loop) -->
   <video id="bgVideo" src="video.mp4" playsinline muted preload="auto" class="background-video"></video>
   
-  <!-- KOTAK OVERLAY BINGKAI MELIUK (MUNCUL DETIK KE-7) -->
+  <!-- KOTAK OVERLAY BINGKAI MELIUK LANCIP (MUNCUL DETIK KE-5) -->
   <div id="video-overlay">
     <div class="vintage-frame-container">
-      <!-- Vektor SVG Bingkai Meliuk Putih Transparan (Mirip Referensi Gambar) -->
+      <!-- Vektor SVG Bingkai Ogee Arch (Puncak Lancip) dengan Putih Transparan Kaca -->
       <svg class="vf-svg-bg" viewBox="0 0 340 540" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Latar belakang putih kaca -->
-        <path d="M 50 20 L 290 20 A 15 15 0 0 1 305 35 L 305 45 A 15 15 0 0 0 320 60 L 320 480 A 15 15 0 0 0 305 495 L 305 505 A 15 15 0 0 1 290 520 L 50 520 A 15 15 0 0 1 35 505 L 35 495 A 15 15 0 0 0 20 480 L 20 60 A 15 15 0 0 0 35 45 L 35 35 A 15 15 0 0 1 50 20 Z" fill="rgba(255,255,255,0.95)" stroke="#6c7f93" stroke-width="2.5"/>
+        <!-- Latar belakang putih kaca transparan (rgba 0.65) -->
+        <path d="M 170 10 C 220 10, 250 40, 290 40 A 15 15 0 0 1 305 55 L 305 65 A 15 15 0 0 0 320 80 L 320 480 A 15 15 0 0 0 305 495 L 305 505 A 15 15 0 0 1 290 520 L 50 520 A 15 15 0 0 1 35 505 L 35 495 A 15 15 0 0 0 20 480 L 20 80 A 15 15 0 0 0 35 65 L 35 55 A 15 15 0 0 1 50 40 C 90 40, 120 10, 170 10 Z" fill="rgba(255,255,255,0.65)" stroke="#6c7f93" stroke-width="2.5"/>
         <!-- Garis ukiran dalam -->
-        <path d="M 50 28 L 290 28 A 12 12 0 0 1 302 40 L 302 50 A 12 12 0 0 0 314 62 L 314 478 A 12 12 0 0 0 302 490 L 302 500 A 12 12 0 0 1 290 512 L 50 512 A 12 12 0 0 1 38 500 L 38 490 A 12 12 0 0 0 26 478 L 26 62 A 12 12 0 0 0 38 50 L 38 40 A 12 12 0 0 1 50 28 Z" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
+        <path d="M 170 22 C 215 22, 242 50, 278 50 A 12 12 0 0 1 290 62 L 290 70 A 12 12 0 0 0 302 82 L 302 478 A 12 12 0 0 0 290 490 L 290 498 A 12 12 0 0 1 278 510 L 62 510 A 12 12 0 0 1 50 498 L 50 490 A 12 12 0 0 0 38 478 L 38 82 A 12 12 0 0 0 50 70 L 50 62 A 12 12 0 0 1 62 50 C 98 50, 125 22, 170 22 Z" fill="none" stroke="#6c7f93" stroke-width="1.5"/>
       </svg>
       
       <!-- Isi dalam bingkai: Foto Arch dan Teks -->
@@ -1491,22 +1505,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === TIMELINE SENSOR VIDEO (DETIK KE-7 & DETIK KE-11) ===
+  // === TIMELINE SENSOR VIDEO (DETIK KE-5 & DETIK KE-11) ===
   if (bgVideo) {
     bgVideo.addEventListener("timeupdate", () => {
-      // 1. Detik 7: Bingkai Meliuk Putih Transparan Muncul
-      if (bgVideo.currentTime >= 7 && videoOverlay) {
-        videoOverlay.style.opacity = "1";
-        videoOverlay.style.pointerEvents = "auto";
+      // 1. Detik 5: Bingkai Vektor Ogee Arch Muncul dengan animasi POP-UP Keren
+      if (bgVideo.currentTime >= 5 && videoOverlay) {
+        videoOverlay.classList.add("show-frame");
       }
       
-      // 2. Detik 11: Menu Navigator Bawah Muncul Otomatis
+      // 2. Detik 11: Menu Navigator Burgundy Muncul Otomatis
       if (bgVideo.currentTime >= 11 && !menuShown) {
         if (menu) menu.classList.add("show");
         menuShown = true;
       }
       
-      // 3. Detik 13.9: Matikan video agar beku (freeze) menjadi background di frame terakhir
+      // 3. Detik 13.9: Matikan video agar beku (freeze) menjadi background
       if (bgVideo.currentTime >= 13.9) {
         bgVideo.pause();
       }
@@ -1712,3 +1725,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+

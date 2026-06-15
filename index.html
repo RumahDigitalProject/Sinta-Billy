@@ -454,22 +454,22 @@
     .bunga-hiasan {
       position: absolute;
       z-index: 1; /* Menempatkan bunga di belakang foto */
-      width: 120px; /* Ukuran yang pas untuk menjorok keluar */
+      width: 85px; /* Dikecilkan dari 120px agar lebih proporsional */
       pointer-events: none; /* Mencegah bunga menghalangi klik pada area tersebut */
       filter: drop-shadow(0 5px 10px rgba(0,0,0,0.25)); /* Memberi efek nyata/hidup */
     }
 
     /* Posisi Kiri: Agak ke atas dan miring rotasi ke luar */
     .bunga-kiri {
-      top: -15px;
-      left: -55px;
+      top: -10px;
+      left: -40px;
       transform: rotate(-35deg);
     }
 
     /* Posisi Kanan: Agak ke bawah dan miring rotasi ke luar (Asimetris / Tidak Sejajar) */
     .bunga-kanan {
-      bottom: 15px;
-      right: -55px;
+      bottom: 10px;
+      right: -40px;
       transform: rotate(45deg);
     }
 
@@ -1294,6 +1294,7 @@
     <div class="profilx">
       
       <div class="pengantinx animasi-scroll">
+        <!-- BINGKAI WRAPPER SINTA -->
         <div class="bingkai-wrapper">
           <img src="bunga.webp" class="bunga-hiasan bunga-kiri" alt="Bunga Kiri" loading="lazy">
           <img src="bunga.webp" class="bunga-hiasan bunga-kanan" alt="Bunga Kanan" loading="lazy">
@@ -1308,6 +1309,7 @@
       <div class="and-symbol animasi-scroll">&</div>
       
       <div class="pengantinx animasi-scroll">
+        <!-- BINGKAI WRAPPER BILLY -->
         <div class="bingkai-wrapper">
           <img src="bunga.webp" class="bunga-hiasan bunga-kiri" alt="Bunga Kiri" loading="lazy">
           <img src="bunga.webp" class="bunga-hiasan bunga-kanan" alt="Bunga Kanan" loading="lazy">

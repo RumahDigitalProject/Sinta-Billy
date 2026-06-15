@@ -22,7 +22,7 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
   <style>
-    /* RESET & OPTIMASI UMUM (TEMA CERAH) */
+    /* RESET & OPTIMASI UMUM */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { 
       font-family: 'Poppins', sans-serif; 
@@ -379,7 +379,7 @@
       width: 100%;
     }
 
-    /* MAPPING GAMBAR PARALLAX KOREKSI FINAL */
+    /* MAPPING GAMBAR PARALLAX KE SEKSI YANG BENAR */
     #invitation1.section-parallax::before { background-image: url('galeri8.webp'); }
     .acara.section-parallax::before { background-image: url('galeri8.webp'); } 
     #rsvp.section-parallax::before { background-image: url('galeri8.webp'); } 
@@ -752,7 +752,7 @@
     /* ORNAMEN WAYANG (UKURAN 200PX FORMASI 3-2) */
     .hiasan-wayang {
       position: absolute;
-      z-index: 1; 
+      z-index: 1; /* Di bawah foto galeri */
       width: 200px; 
       opacity: 0.6; 
       pointer-events: none;
@@ -894,6 +894,7 @@
        ========================================= */
     #gift {
       position: relative;
+      overflow: hidden;
       padding: 60px 20px;
       text-align: center;
       color: #354a5f;
@@ -940,7 +941,7 @@
       z-index: 2;
     }
 
-    /* KAPSUL BINGKAI RAKSASA WEDDING GIFT + PARALLAX GALERI8 DI DALAM KAPSUL SAJA */
+    /* KAPSUL BINGKAI RAKSASA WEDDING GIFT - BACKGROUND GALERI8 STATIS (ANTI LAG) */
     .box-gift-pill {
       border: 3px solid #354a5f; 
       outline: 2px solid #354a5f; /* Garis luar */
@@ -954,10 +955,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      
-      /* SOLUSI MUTLAK ANTI-LAG & PARALLAX MUNCUL JELAS */
-      /* Menggabungkan Overlay transparan dan Parallax gambar dalam 1 baris */
-      background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('galeri8.webp') center center / cover fixed;
+      position: relative;
+      overflow: hidden; 
+      z-index: 1;
+    }
+
+    /* SOLUSI MUTLAK ANTI-LAG: Gambar Statis + Blur Tipis (Tanpa Fixed Parallax) */
+    .box-gift-pill::before {
+      content: "";
+      position: absolute; 
+      inset: -10px; 
+      background: url('galeri8.webp') center center / cover no-repeat;
+      filter: blur(2px); /* Blur tipis agar estetik tapi gambar tetap jelas */
+      z-index: -2;
+    }
+
+    /* Overlay Warna Putih Tipis Supaya Teks Terbaca */
+    .box-gift-pill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.65); /* Transparan 0.65 pas untuk teks biru & putih */
+      z-index: -1;
+    }
+
+    .box-gift-pill > * {
+      position: relative;
+      z-index: 2;
     }
 
     /* KARTU ATM (DIPERKECIL AGAR MASUK KAPSUL SECARA HARMONIS) */
@@ -1743,7 +1767,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) lightbox.style.display = 'none';
   });
 
-  // === RSVP & UCAPAN GOOGLE SHEET (DENGAN PAGINASI) ===
+  // === RSVP & UCAPAN GOOGLE SHEET (DENGAN PAGINASI AMAN) ===
   const scriptURL = "https://script.google.com/macros/s/AKfycbzZidPPA1HdlAGW5LjV1-mfGYPPE22gzlFkD1jQxyQUT2OYPoOddNSwTaJ1ZzZzQA7_/exec";
   
   let allUcapan = [];

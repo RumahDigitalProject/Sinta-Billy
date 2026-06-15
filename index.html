@@ -941,8 +941,9 @@
       z-index: 2;
     }
 
-    /* KAPSUL BINGKAI RAKSASA WEDDING GIFT - BACKGROUND GALERI8 STATIS (ANTI LAG) */
+    /* KAPSUL BINGKAI RAKSASA WEDDING GIFT - BACKGROUND LANGSUNG TANPA LAYER (ANTI LAG MUTLAK) */
     .box-gift-pill {
+      background: url('galeri8.webp') center center / cover no-repeat; /* BACKGROUND LANGSUNG DISINI */
       border: 3px solid #354a5f; 
       outline: 2px solid #354a5f; /* Garis luar */
       outline-offset: 8px; /* Jarak garis luar */
@@ -962,24 +963,7 @@
       /* PENAMBAHAN HARDWARE ACCELERATION UNTUK MENGHILANGKAN LAG */
       -webkit-backface-visibility: hidden;
       transform: translateZ(0);
-    }
-
-    /* SOLUSI MUTLAK ANTI-LAG: Gambar Statis + Blur Tipis (Tanpa Fixed Parallax) */
-    .box-gift-pill::before {
-      content: "";
-      position: absolute; 
-      inset: 0; 
-      background: url('galeri8.webp') center center / cover no-repeat;
-      z-index: -2;
-    }
-
-    /* Overlay Warna Putih Tipis Supaya Teks Terbaca */
-    .box-gift-pill::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.75); /* Transparan 0.75 pas untuk teks biru & putih */
-      z-index: -1;
+      will-change: transform;
     }
 
     .box-gift-pill > * {

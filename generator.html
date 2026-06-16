@@ -8,8 +8,8 @@
   <style>
     body {
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #7b1f26, #f3a302);
-      color: #fff;
+      background: #ffffff; /* Full warna putih bersih */
+      color: #333333; /* Teks diubah ke gelap agar terbaca */
       text-align: center;
       min-height: 100vh;
       display: flex;
@@ -19,32 +19,37 @@
     }
 
     .generator {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
       border-radius: 20px;
       padding: 30px 40px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Bayangan dibuat lebih lembut */
       max-width: 420px;
       width: 100%;
-      backdrop-filter: blur(8px);
     }
 
     h1 {
       font-family: "Great Vibes", cursive;
-      font-size: 34px;
+      font-size: 38px;
       margin-bottom: 20px;
-      color: #fffbea;
+      color: #7b1f26; /* Judul diubah ke burgundy agar tetap senada dengan tema undangan */
     }
 
     input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: none;
+      border: 1px solid #cccccc; /* Diberi garis batas karena background putih */
       border-radius: 10px;
       text-align: center;
       font-size: 16px;
       outline: none;
+      background: #f9f9f9;
+      color: #333333;
+    }
+
+    input:focus {
+      border-color: #f3a302;
     }
 
     button {
@@ -57,6 +62,7 @@
       font-size: 16px;
       margin-top: 10px;
       transition: 0.3s;
+      font-weight: 600;
     }
 
     button:hover {
@@ -65,16 +71,24 @@
 
     .hasil {
       margin-top: 20px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.15);
+      padding: 15px;
+      background: #f4f4f4; /* Kotak hasil diubah ke abu-abu muda */
       border-radius: 10px;
       word-break: break-all;
+      border: 1px solid #e0e0e0;
+    }
+
+    .hasil p {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 500;
     }
 
     a.link {
-      color: #fff;
+      color: #0056b3; /* Teks link diubah ke biru standar internet agar terlihat bisa diklik */
       text-decoration: underline;
       word-break: break-all;
+      font-weight: 500;
     }
 
     .btn-wa {
@@ -144,6 +158,7 @@
       ` *Sinta & Billy* \n\n` +
       `yang diselenggarakan pada tanggal *18 - 19 Juli 2026* \n\n` +
       `Untuk detail acara, silakan klik tautan berikut:\n${link}\n\n` +
+      `_(Buka tautan via Google Chrome untuk tampilan yang lebih sempurna)._\n\n` +
       `E-invitation ini merupakan undangan resmi dari kami karena keterbatasan jarak dan waktu.\n\n` +
       `Merupakan suatu kebahagiaan dan kehormatan bagi kami jika Bapak/Ibu/Saudara/i berkenan menghadiri acara resepsi pernikahan kami. Terima kasih banyak atas perhatiannya.\n\n` +
       `Om Santih, Santih, Santih, Om`;
